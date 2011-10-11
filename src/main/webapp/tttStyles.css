@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+/* Tic Tac Toe style */
+p, .normal { font-family: "Trebuchet MS", "Arial";
+     font-size: 10pt }
+.good { font-family: "Trebuchet MS", "Arial";
+     font-size: 12pt; 
+     color:green }
+.bad { font-family: "Trebuchet MS", "Arial";
+     font-size: 12pt;
+     color:red }
+.footer { font-family: "Trebuchet MS", "Arial";
+     font-size: 8pt;
+     color:grey }
+
+
