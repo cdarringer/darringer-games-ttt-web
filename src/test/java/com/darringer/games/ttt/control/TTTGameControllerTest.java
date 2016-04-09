@@ -40,7 +40,14 @@ public class TTTGameControllerTest {
 		assertTrue("Invalid games are not possible", NOT_POSSIBLE == model.getStatus());
 
 		model = new TTTModel("xxxxxxxxxxxx");
+		assertTrue("Invalid games are not possible", NOT_POSSIBLE == model.getStatus());
+
+		model = new TTTModel("");
+		assertTrue("Invalid games are not possible", NOT_POSSIBLE == model.getStatus());
+
+		model = new TTTModel(null);
 		assertTrue("Invalid games are not possible", NOT_POSSIBLE == model.getStatus());		
+
 	}
 	
 	@Test
@@ -54,6 +61,14 @@ public class TTTGameControllerTest {
 		model = new TTTModel();
 		model = controller.makeMove(model, 10, X_SQUARE);
 		assertTrue("Index should be valid", NOT_POSSIBLE == model.getStatus());
+
+		model = new TTTModel();
+		model = controller.makeMove(model, 5, 'z');
+		assertTrue("Index should be valid", NOT_POSSIBLE == model.getStatus());
+
+		model = new TTTModel("--------x");
+		model = controller.makeMove(model, 8, X_SQUARE);
+		assertTrue("Square should not already be occupied", NOT_POSSIBLE == model.getStatus());
 		
 		model = new TTTModel("x--------");
 		model = controller.makeMove(model, 0, X_SQUARE);
@@ -62,6 +77,11 @@ public class TTTGameControllerTest {
 		model = new TTTModel();
 		model = controller.makeMove(model, -1, 'Z');
 		assertTrue("Square value should be valid", NOT_POSSIBLE == model.getStatus());
+		
+		model = new TTTModel("xxx------");
+		model = controller.makeMove(model, 5, X_SQUARE);
+		assertTrue("Square value should be valid", X_WIN == model.getStatus());
+		
 	}
 	
 	@Test
@@ -78,9 +98,58 @@ public class TTTGameControllerTest {
 
 		model = new TTTModel("----x---x");
 		model = controller.makeMove(model, 0, X_SQUARE);
-		assertTrue("X should win diagonal", X_WIN == model.getStatus());			
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+
+		model = new TTTModel("---xx----");
+		model = controller.makeMove(model, 5, X_SQUARE);
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+		
+		model = new TTTModel("-------xx");
+		model = controller.makeMove(model, 6, X_SQUARE);
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+
+		model = new TTTModel("-------xx");
+		model = controller.makeMove(model, 6, X_SQUARE);
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+
+		model = new TTTModel("----x--x-");
+		model = controller.makeMove(model, 1, X_SQUARE);
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+		
+		model = new TTTModel("-----x--x");
+		model = controller.makeMove(model, 2, X_SQUARE);
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+
+		model = new TTTModel("----x-x-x");
+		model = controller.makeMove(model, 2, X_SQUARE);
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+
+		model = new TTTModel("----x---x");
+		model = controller.makeMove(model, 0, X_SQUARE);
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+
+		model = new TTTModel("----x-x--");
+		model = controller.makeMove(model, 2, X_SQUARE);
+		assertTrue("X should win diagonal", X_WIN == model.getStatus());
+
+		model = new TTTModel("-oo------");
+		model = controller.makeMove(model, 0, O_SQUARE);
+		assertTrue("0 should win ", O_WIN == model.getStatus());
+		
+		model = new TTTModel("----oo---");
+		model = controller.makeMove(model, 3, O_SQUARE);
+		assertTrue("0 should win ", O_WIN == model.getStatus());		
+
+		model = new TTTModel("-------oo");
+		model = controller.makeMove(model, 6, O_SQUARE);
+		assertTrue("0 should win ", O_WIN == model.getStatus());		
+
+		model = new TTTModel("---o--o--");
+		model = controller.makeMove(model, 0, O_SQUARE);
+		assertTrue("0 should win ", O_WIN == model.getStatus());		
+		
 	}
-	
+		
 	@Test
 	public void testLosingMoves() {
 		TTTModel model;
@@ -108,7 +177,22 @@ public class TTTGameControllerTest {
 		model = new TTTModel("oxoxox--x");
 		model = controller.makeMove(model, 6, X_SQUARE);
 		assertTrue("O should tie the game", TIE == model.getStatus());
-		assertTrue("O takes the last square", O_SQUARE == model.getSquare(7));		
+		assertTrue("O takes the last square", O_SQUARE == model.getSquare(7));	
 	}
+	
+	@Test
+	public void testInProgressMoves() {
+		TTTModel model;
+
+		model = new TTTModel("x--------");
+		model = controller.makeMove(model, 2, O_SQUARE);
+		assertTrue("In progress game", IN_PROGRESS == model.getStatus());		
+		
+		model = new TTTModel("o--------");
+		model = controller.makeMove(model, 2, O_SQUARE);
+		assertTrue("In progress game", IN_PROGRESS == model.getStatus());		
+		
+	}
+
 	
 }
