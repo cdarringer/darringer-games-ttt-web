@@ -14,7 +14,7 @@ import org.junit.Test;
 import com.darringer.games.ttt.model.TTTModel;
 
 /**
- * @author Nanda
+ * @author Group11
  *
  */
 public class TTTJSPViewTest {

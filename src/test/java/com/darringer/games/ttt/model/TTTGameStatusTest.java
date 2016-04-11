@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.darringer.games.ttt.model.TTTGameStatus;
 
 /**
- * @author Nanda
+ * @author Group11
  *
  */
 public class TTTGameStatusTest {

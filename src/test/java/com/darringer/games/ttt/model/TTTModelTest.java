@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author Nanda
+ * @author Group11
  *
  */
 public class TTTModelTest {

@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 import com.darringer.games.ttt.model.TTTModel;
 
 /**
- * @author Nanda
+ * @author Group11
  *
  */
 public class TTTServletTest extends Mockito{
@@ -108,7 +108,6 @@ public class TTTServletTest extends Mockito{
 		// Just ensure that the Servlet creation works fine
         TTTServlet tttServlet = new TTTServlet();
         tttServlet.doPost(request, response);
-
 	}
 
 }
