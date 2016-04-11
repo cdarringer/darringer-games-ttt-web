@@ -3,7 +3,8 @@ Steps to Run:
 1. Import it as a maven project in eclipse IDE.
 
 2. Running the application through Servlet
-   * Goto the main project "darringer-games-ttt-web", right click for Run As->Maven build (This will generate war file)
+   * Goto the main project "darringer-games-ttt-web", right click for Run As->Maven build 
+   * In Edit configuration window, insert word "install" in Goals and press Run button.(This will generate war file)
    * Right click on the main project "darringer-games-ttt-web", select again Run As-> Run on Server
    * In "Run on Server" window, select "Manually define a new server" 
    * In server type, selct Basic->J2EE Preview->Next->Finish
