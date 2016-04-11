@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.darringer.games.ttt.web;
 
@@ -14,7 +14,7 @@ import org.junit.Test;
 import com.darringer.games.ttt.model.TTTModel;
 
 /**
- * @author Group11
+ * @author Nanda
  *
  */
 public class TTTJSPViewTest {
@@ -35,7 +35,7 @@ public class TTTJSPViewTest {
 		TTTModel model;
 		model = new TTTModel("x-------o");
 		TTTJSPView tttJSPView = new TTTJSPView(model);
-		
+
 		assertEquals(tttJSPView.getSquare(0), X_SQUARE);
 		assertEquals(tttJSPView.getSquare(8), O_SQUARE);
 		assertEquals(tttJSPView.getSquare(7), EMPTY_SQUARE);

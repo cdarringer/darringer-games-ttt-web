@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.darringer.games.ttt.model;
 
@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.darringer.games.ttt.model.TTTGameStatus;
 
 /**
- * @author Group11
+ * @author Nanda
  *
  */
 public class TTTGameStatusTest {
