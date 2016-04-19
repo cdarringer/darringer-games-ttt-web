@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package com.darringer.games.ttt.web;
 
@@ -27,23 +27,23 @@ public class TTTServletTest extends Mockito{
 	 */
 	@Test
 	public void testDoGetHttpServletRequestHttpServletResponse() throws Exception{
-        HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);
+        HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpServletResponse response = mock(HttpServletResponse.class);  
         RequestDispatcher requestDispatcher = mock(RequestDispatcher.class);
         ServletContext servletContext = mock(ServletContext.class);
 
 		TTTModel model;
 		model = new TTTModel("x--------");
-
+		
         when(request.getParameter("board")).thenReturn(model.toString());
 
-        TTTServlet tttServlet = mock(TTTServlet.class);
+        TTTServlet tttServlet = mock(TTTServlet.class);     
         Mockito.doCallRealMethod().when(tttServlet).doGet(request, response);   // Call the real method in this case
-
+        
         when(tttServlet.getServletContext()).thenReturn(servletContext);
         when(servletContext.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
         doNothing().when(requestDispatcher).forward(request, response);
-
+        
         // Repeat this for the different locations to verify
         for (Integer i=0; i<9; i++){
 	        when(request.getParameter(i.toString() + ".x")).thenReturn("True");
@@ -51,7 +51,7 @@ public class TTTServletTest extends Mockito{
 	        tttServlet.doGet(request, response);
 	        // Set the request return for this index to NULL so that it does not get repeated again
 	        when(request.getParameter(i.toString() + ".x")).thenReturn(null);
-
+	        
         }
 
         // Ensure that the request was parsed
@@ -65,20 +65,20 @@ public class TTTServletTest extends Mockito{
 	 */
 	@Test
 	public void testDoGetHttpServletRequestHttpServletResponseNewGame() throws Exception{
-        HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);
+        HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpServletResponse response = mock(HttpServletResponse.class);  
         RequestDispatcher requestDispatcher = mock(RequestDispatcher.class);
         ServletContext servletContext = mock(ServletContext.class);
 
         when(request.getParameter("board")).thenReturn(null);   // Return new Game board
 
-        TTTServlet tttServlet = mock(TTTServlet.class);
+        TTTServlet tttServlet = mock(TTTServlet.class);     
         Mockito.doCallRealMethod().when(tttServlet).doGet(request, response);   // Call the real method in this case
-
+        
         when(tttServlet.getServletContext()).thenReturn(servletContext);
         when(servletContext.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
         doNothing().when(requestDispatcher).forward(request, response);
-
+        
         // Repeat this for the different locations to verify
         for (Integer i=0; i<9; i++){
 	        when(request.getParameter(i.toString() + ".x")).thenReturn("True");
@@ -86,28 +86,29 @@ public class TTTServletTest extends Mockito{
 	        tttServlet.doGet(request, response);
 	        // Set the request return for this index to NULL so that it does not get repeated again
 	        when(request.getParameter(i.toString() + ".x")).thenReturn(null);
-
+	        
         }
 
         // Ensure that the request was parsed
         verify(request, atLeast(9)).getParameter("board"); // Verify if the board parameter was received as part of input request
         verify(servletContext, times(9)).getRequestDispatcher("/ttt.jsp"); // verify it a valid jsp was requested
         verify(requestDispatcher, times(9)).forward(request, response);  // Verify if the request dispatcher was called once
-
+        
 	}
 	/**
 	 * Test method for {@link com.darringer.games.ttt.web.TTTServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)}.
-	 * @throws IOException
-	 * @throws ServletException
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	@Test
 	public void testDoPostHttpServletRequestHttpServletResponse() throws Exception {
-        HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);
-
+        HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpServletResponse response = mock(HttpServletResponse.class);  
+		       
 		// Just ensure that the Servlet creation works fine
         TTTServlet tttServlet = new TTTServlet();
         tttServlet.doPost(request, response);
+       
 	}
 
 }
